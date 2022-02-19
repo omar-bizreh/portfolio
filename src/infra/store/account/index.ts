@@ -23,3 +23,5 @@ const useAccountStore = defineStore<
     },
   },
 });
+
+export default useAccountStore;
