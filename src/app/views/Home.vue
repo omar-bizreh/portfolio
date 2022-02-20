@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
 </template>
@@ -18,3 +17,14 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+.home {
+  padding-top: 32px;
+  padding-left: 32px;
+  padding-right: 32px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+</style>

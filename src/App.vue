@@ -1,18 +1,26 @@
 <template>
-  <Toolbar />
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <TabMenu />
   </div>
-  <router-view />
+  <router-view v-if="isGuest" name="guest" />
+  <router-view v-else name="user" />
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
-import Toolbar from "@/app/components/toolbar/Toolbar.vue";
+import { computed, defineComponent } from "vue";
+import useAccountStore from "./infra/store/account";
+import { storeToRefs } from "pinia";
+import TabMenu from "@/app/components/tabMenu/TabMenu.vue";
 
 export default defineComponent({
+  setup() {
+    const accountStore = useAccountStore();
+    const { userName } = storeToRefs(accountStore);
+    return {
+      isGuest: computed(() => userName !== undefined),
+    };
+  },
   components: {
-    Toolbar,
+    TabMenu,
   },
 });
 </script>
@@ -25,7 +33,6 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: var(--text-color);
 }
 

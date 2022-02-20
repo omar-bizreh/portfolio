@@ -1,17 +1,19 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Home from '@/app/views/Home.vue';
+import authRoutes from './auth';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    components: { guest: Home },
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/app/views/About.vue'),
+    components: { guest: () => import('@/app/views/About.vue') },
   },
+  ...authRoutes,
 ];
 
 const router = createRouter({
