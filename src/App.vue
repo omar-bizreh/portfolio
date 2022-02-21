@@ -1,7 +1,5 @@
 <template>
-  <div id="nav">
-    <TabMenu />
-  </div>
+  <HeaderBar />
   <router-view v-if="isGuest" name="guest" />
   <router-view v-else name="user" />
 </template>
@@ -9,7 +7,7 @@
 import { computed, defineComponent } from "vue";
 import useAccountStore from "./infra/store/account";
 import { storeToRefs } from "pinia";
-import TabMenu from "@/app/components/tabMenu/TabMenu.vue";
+import HeaderBar from "@/app/components/toolbar/HeaderBar.vue";
 
 export default defineComponent({
   setup() {
@@ -20,7 +18,7 @@ export default defineComponent({
     };
   },
   components: {
-    TabMenu,
+    HeaderBar,
   },
 });
 </script>
@@ -38,14 +36,5 @@ body {
 
 #nav {
   padding: 30px;
-}
-
-a {
-  font-weight: bold;
-  color: var(--teal-500);
-}
-
-a.router-link-exact-active {
-  color: var(--teal-600);
 }
 </style>
